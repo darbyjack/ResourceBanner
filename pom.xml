@@ -6,7 +6,7 @@
 
     <groupId>thito</groupId>
     <artifactId>resourcebanner</artifactId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
     <name>ResourceBanner</name>
 
     <properties>
@@ -24,6 +24,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>thito</groupId>
+            <artifactId>septo.io</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

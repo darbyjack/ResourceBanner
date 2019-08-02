@@ -105,6 +105,12 @@ public class BannerMakerServer extends Server implements ClientListener {
 			rainbow = Boolean.parseBoolean(query.getProperty("rainbow"));
 			if (rainbow) response.setRequestProperty(HttpField.CONTENT_TYPE, ContentType.IMAGE_GIF);
 		}
+		if (query.containsKey("width")) {
+			String w = query.getProperty("width");
+			if (Utils.isInteger(w)) {
+				width = Integer.parseInt(w);
+			}
+		}
 		/*
 		 * Beginning of life
 		 * handling client request
@@ -149,7 +155,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			return;
 		}
 		if (sizeLimit > 50) sizeLimit = 50;
-		if (paths.is("data")) {
+/*		if (paths.is("data")) {
 			response.setRequestProperty(HttpField.CONTENT_TYPE, ContentType.APPLICATION_JSON);
 			final Map<String, Object> data = new HashMap<>();
 			data.put("resources", BannerMaker.getCachedResources());
@@ -162,7 +168,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			response.setContent(BannerMaker.getGson().toJson(data).getBytes());
 			BannerMaker.done();
 			return;
-		}
+		}*/
 		if (paths.is("generator")) {
 			response.setRequestProperty(HttpField.CONTENT_TYPE, ContentType.TEXT_HTML);
 			client.send(response);
@@ -191,7 +197,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			BannerMaker.done();
 			return;
 		}
-		if (paths.is("random")) {
+/*		if (paths.is("random")) {
 			if (paths.has()) {
 				final String authorID = paths.next();
 				final List<SpigotResource> res = BannerMaker.getSpigotResourceHandler().byAuthor(authorID, 10, sortBy,
@@ -227,7 +233,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			response = new Response(ResponseType.NOT_FOUND);
 			client.send(response);
 			return;
-		}
+		}*/
 		if (paths.is("author")) {
 			if (paths.has()) {
 				final String authorID = paths.get();
@@ -282,7 +288,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			client.send(response);
 			return;
 		}
-		if (paths.is("meme")) {
+/*		if (paths.is("meme")) {
 			final File[] files = getFile("memes").listFiles();
 			final File meme = files[ImageUtil.random.nextInt(files.length)];
 			final String[] split = meme.getName().split("\\.");
@@ -295,7 +301,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 			}
 			BannerMaker.done();
 			return;
-		}
+		}*/
 		if (paths.is("spiget")) {
 			final SpigetStatus stats = SpigetStatus.getSpigetStatus();
 			final RectBkg img = new RectBkg(bright);
@@ -374,6 +380,9 @@ public class BannerMakerServer extends Server implements ClientListener {
 					BannerMaker.getCachedResources().add(resourceID);
 				} else {
 					BannerMaker.addBigText(img, "Not Found :/", fontName);
+				}
+				if (width != -1 && width < 250) {
+					width = 250;
 				}
 				if (width > 0) {
 					img.setSize(width, img.getHeight());

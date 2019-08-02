@@ -175,7 +175,7 @@ public class BannerMaker /*extends WebServer*/ {
 			System.out.println("Failed to load configuration");
 			t.printStackTrace();
 		}
-		int port = 8080;
+		int port = 8090;
 		if (args.length > 0 && Utils.isInteger(args[0])) {
 			port = Integer.parseInt(args[0]);
 			System.out.println("Using custom port " + args[0]);
