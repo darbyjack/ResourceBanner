@@ -71,7 +71,7 @@ public class BannerMakerServer extends Server implements ClientListener {
 		if (query.containsKey("subfont")) subFont = query.getProperty("subfont");
 		if (query.containsKey("bright")) bright = Boolean.parseBoolean(query.getProperty("bright"));
 		if (!paths.isEmpty()) {
-			final String[] f = paths.last().split("\\.",2);
+			final String[] f = paths.first().split("\\.", 2);
 			if (f.length == 2) {
 				paths.setLast(f[1].toLowerCase());
 				paths.getAll()[0] = f[0];

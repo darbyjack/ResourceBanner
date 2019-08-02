@@ -35,7 +35,7 @@ public class Marquee {
 		}
 	}
 
-	public static final char COLOR_CHAR = 'ง';
+	public static final char COLOR_CHAR = 'ยง';
 
 	public static void main(String[] args) {
 		final Marquee mar = new Marquee("i want &asomething &rjust like this".replace('&', COLOR_CHAR), 200);

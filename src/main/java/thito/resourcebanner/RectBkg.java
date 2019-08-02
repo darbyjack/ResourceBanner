@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class RectBkg extends JPanel {
 			if (average >= 1) {
 				average -= 1;
 				try {
-					g.drawImage(ImageIO.read(BannerMaker.getResource("star.png")), bound.x + ((int) gap + width) * i,
+					g.drawImage(ImageIO.read(new File("star.png")), bound.x + ((int) gap + width) * i,
 							bound.y, width, bound.height, null);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -87,14 +88,14 @@ public class RectBkg extends JPanel {
 			} else if (average >= 0.5) {
 				average -= 0.5;
 				try {
-					g.drawImage(ImageIO.read(BannerMaker.getResource("star_half.png")),
+					g.drawImage(ImageIO.read(new File("star_half.png")),
 							bound.x + ((int) gap + width) * i, bound.y, width, bound.height, null);
 				} catch (final IOException e) {
 					e.printStackTrace();
 				}
 			} else if (average < 0.5) {
 				try {
-					g.drawImage(ImageIO.read(BannerMaker.getResource("star_off.png")),
+					g.drawImage(ImageIO.read(new File("star_off.png")),
 							bound.x + ((int) gap + width) * i, bound.y, width, bound.height, null);
 				} catch (final IOException e) {
 					e.printStackTrace();
